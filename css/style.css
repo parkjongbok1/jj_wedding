@@ -1,0 +1,23 @@
+.guideline {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  /* background: rgb(175, 175, 175); */
+}
+.wrep {
+  width: 100%;
+  margin: 0 auto;
+  border: 2px solid white;
+}
+.main,
+section {
+  width: 100%;
+  margin: 0 auto;
+}
+section {
+  height: 50vh;
+  background: pink;
+}
+section:nth-child(even) {
+  background: darkcyan;
+}
