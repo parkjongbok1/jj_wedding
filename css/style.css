@@ -30,11 +30,12 @@ body {
 section,
 .intro {
   width: 100%;
+  max-width: 720px;
   margin: 0 auto;
 }
 section {
-  height: 50vh;
-  background: pink;
+  /* height: 50vh; */
+  /* background: pink; */
 }
 section:nth-child(even) {
   background: darkcyan;
@@ -42,7 +43,7 @@ section:nth-child(even) {
 
 /* 카운트다운 글자 스타일 */
 #countdown {
-  font-size: 10vw;
+  font-size: 52px;
   font-weight: 400;
   color: #4e3b3a;
   font-family: "Nanum Pen Script", cursive;
@@ -53,7 +54,7 @@ section:nth-child(even) {
 /* 인트로 사이트 */
 .intro {
   width: 100vw;
-  max-width: 720px;
+  max-width: 620px;
   height: 100vh;
   background: url("../img/intro_bg.png") no-repeat center center;
   background-size: cover;
@@ -69,10 +70,10 @@ section:nth-child(even) {
 .intro .top_title {
   width: 100%;
   text-align: center;
-  margin-top: 12vw;
+  margin-top: 52px;
 }
 .intro .top_title span {
-  font-size: 5vw;
+  font-size: 26px;
   font-weight: 500;
   line-height: 1.4;
   color: #4e3b3a;
@@ -80,7 +81,7 @@ section:nth-child(even) {
   display: block;
 }
 .intro .top_title h2 {
-  font-size: 9vw;
+  font-size: 38px;
   font-weight: 600;
   color: #4e3b3a;
   margin-top: 32px;
@@ -88,11 +89,10 @@ section:nth-child(even) {
 
 .intro img.ribbon {
   width: 100%;
-  /* margin: 56vw 0 36vw; */
 }
 
 .intro h3 {
-  font-size: 5vw;
+  font-size: 26px;
   font-weight: 500;
   line-height: 1.4;
   color: #4e3b3a;
@@ -102,5 +102,32 @@ section:nth-child(even) {
   font-weight: 700;
   display: block;
 
-  margin-bottom: 12vw;
+  margin-bottom: 52px;
+}
+@media all and (min-width: 360px) and (max-width: 720px) {
+  /* 카운트다운 글자 스타일 */
+  #countdown {
+    font-size: 10vw;
+  }
+  /* 인트로 사이트 */
+  .intro {
+  }
+  .intro .top_title {
+    margin-top: 12vw;
+  }
+  .intro .top_title span {
+    font-size: 5vw;
+  }
+  .intro .top_title h2 {
+    font-size: 9vw;
+  }
+  .intro img.ribbon {
+  }
+  .intro h3 {
+    font-size: 5vw;
+  }
+  .intro h3 strong {
+    font-weight: 700;
+    margin-bottom: 12vw;
+  }
 }
