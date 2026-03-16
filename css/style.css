@@ -1,4 +1,21 @@
-.guideline {
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+/* font-family: "Nanum Myeongjo", serif; */
+/* Regular 400 */
+/* Bold 700 */
+/* ExtraBold 800 */
+
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+/* font-family: "Nanum Pen Script", cursive; */
+/* font-weight: 400; */
+
+body {
+  max-width: 1920px;
+  width: 100%;
+  overflow: hidden;
+}
+.guideline,
+.preparation,
+.intro {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
@@ -10,7 +27,8 @@
   border: 2px solid white;
 }
 .main,
-section {
+section,
+.intro {
   width: 100%;
   margin: 0 auto;
 }
@@ -20,4 +38,69 @@ section {
 }
 section:nth-child(even) {
   background: darkcyan;
+}
+
+/* 카운트다운 글자 스타일 */
+#countdown {
+  font-size: 10vw;
+  font-weight: 400;
+  color: #4e3b3a;
+  font-family: "Nanum Pen Script", cursive;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* 인트로 사이트 */
+.intro {
+  width: 100vw;
+  max-width: 720px;
+  height: 100vh;
+  background: url("../img/intro_bg.png") no-repeat center center;
+  background-size: cover;
+
+  font-family: "Nanum Myeongjo", serif;
+  letter-spacing: -1.1px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.intro .top_title {
+  width: 100%;
+  text-align: center;
+  margin-top: 12vw;
+}
+.intro .top_title span {
+  font-size: 5vw;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #4e3b3a;
+  text-align: center;
+  display: block;
+}
+.intro .top_title h2 {
+  font-size: 9vw;
+  font-weight: 600;
+  color: #4e3b3a;
+  margin-top: 32px;
+}
+
+.intro img.ribbon {
+  width: 100%;
+  /* margin: 56vw 0 36vw; */
+}
+
+.intro h3 {
+  font-size: 5vw;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #4e3b3a;
+  text-align: center;
+}
+.intro h3 strong {
+  font-weight: 700;
+  display: block;
+
+  margin-bottom: 12vw;
 }

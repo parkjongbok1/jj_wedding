@@ -53,7 +53,56 @@
   </head>
 
   <body>
-    <div class="guideline">
+    <!-- 인트로 사이트 -->
+    <section class="preparation">
+      <div class="wrep">
+        <div class="intro">
+          <div class="top_title">
+            <span>
+              사랑을 가득 안고,<br />
+              하나의 아름다운 시작을 합니다.
+            </span>
+            <h2>박종복 ㆍ 신지수</h2>
+          </div>
+
+          <div class="cont">
+            <div id="countdown"></div>
+            <img src="img/ribbon.png" alt="" class="ribbon" />
+          </div>
+
+          <h3>
+            2026년 6월 27일 토요일 오후 12시 10분
+            <strong>더뉴컨벤션 2층 더뉴홀</strong>
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // 목표 날짜 설정 (2026년 6월 27일 12:10)
+      const targetDate = new Date("2026-06-27T12:10:00");
+
+      // 1초마다 실행
+      setInterval(function () {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        // 남은 시간 계산
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // 화면 출력
+        document.getElementById("countdown").innerHTML =
+          `D-${days}<br/> ${hours}시간 ${minutes}분 ${seconds}초`;
+      }, 1000);
+    </script>
+
+    <!-- 본 모바일 청첩장 레이아웃 -->
+    <!-- <div class="guideline">
       <div class="wrep">
         <header class="header">
           <div class="inner">
@@ -89,33 +138,33 @@
           </div>
         </header>
 
-        <!-- main -->
+        main
         <main class="main wrapper">
-          <!-- sec01 비주얼 -->
+          sec01 비주얼
           <section class="sec01 visual"></section>
 
-          <!-- sec02 인사말 -->
+          sec02 인사말
           <section class="sec02 greeting"></section>
 
-          <!-- sec07 소개 -->
+          sec07 소개
           <section class="sec03 introduction"></section>
 
-          <!-- sec03 달력, 디데이 -->
+          sec03 달력, 디데이
           <section class="sec04 d_day"></section>
 
-          <!-- sec04 갤러리 -->
+          sec04 갤러리
           <section class="sec05 photo"></section>
 
-          <!-- sec05 계좌 -->
+          sec05 계좌
           <section class="sec06 account"></section>
 
-          <!-- sec06 location -->
+          sec06 location
           <section class="sec07 location"></section>
         </main>
 
-        <!-- footer finish -->
+        footer finish
         <footer class="footer finish" id="common"></footer>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
