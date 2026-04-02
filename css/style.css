@@ -477,6 +477,11 @@ section {
     font-size: 4.5vw;
     margin-top: 1vw;
   }
+  .calendar_wrap ul li {
+    width: 11vw;
+    height: 11vw;
+    font-size: 3.4vw;
+  }
 }
 
 /* introduction */
