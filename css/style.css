@@ -105,6 +105,15 @@ section {
 
   margin-bottom: 52px;
 }
+#countdown {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  /* font-family: "Ephesis", cursive; */
+}
+#countdown br {
+  display: none;
+}
 
 @media all and (min-width: 360px) and (max-width: 620px) {
   /* 카운트다운 글자 스타일 */
