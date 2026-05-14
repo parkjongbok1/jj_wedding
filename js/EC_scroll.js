@@ -16,13 +16,6 @@ $(document).ready(function () {
         $(this).addClass("aniIn_R");
         $(this).addClass("aniIn_S");
         $(this).addClass("aniIn_O");
-      } else {
-        $(this).removeClass("aniIn");
-        $(this).removeClass("aniIn_T");
-        $(this).removeClass("aniIn_L");
-        $(this).removeClass("aniIn_R");
-        $(this).removeClass("aniIn_S");
-        $(this).removeClass("aniIn_O");
       }
     });
   }
