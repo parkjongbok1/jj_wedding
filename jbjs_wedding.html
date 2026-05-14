@@ -1170,10 +1170,68 @@
             </div>
 
             <div class="link_box">
-              <a href="#"
-                ><img src="img/kakao.png" alt="" />카카오톡 공유하기</a
-              >
-              <a href="#"><img src="img/link.png" alt="" />링크 복사하기</a>
+              <!-- 카카오 SDK -->
+              <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+              <!-- 버튼 -->
+              <a href="javascript:void(0);" class="kakao-share">
+                <img src="img/kakao.png" alt="" />
+                카카오톡 공유하기
+              </a>
+
+              <a href="javascript:void(0);" class="copy-link">
+                <img src="img/link.png" alt="" />
+                링크 복사하기
+              </a>
+
+              <!-- 카카오 SDK -->
+              <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+              <script>
+                // 카카오 초기화
+                Kakao.init("여기에_자바스크립트키");
+
+                // 카카오 공유
+                $(".kakao-share").click(function () {
+                  Kakao.Share.sendDefault({
+                    objectType: "feed",
+
+                    content: {
+                      title: "박종복 ♥ 신지수 결혼합니다!",
+                      description:
+                        "2026년 6월 27일 토요일 오후 12시 10분 - 더뉴컨벤션",
+                      imageUrl:
+                        "https://parkjongbok1.github.io/jj_wedding/meta/thumb.jpg",
+
+                      link: {
+                        mobileWebUrl:
+                          "https://parkjongbok1.github.io/jj_wedding/",
+                        webUrl: "https://parkjongbok1.github.io/jj_wedding/",
+                      },
+                    },
+
+                    buttons: [
+                      {
+                        title: "청첩장 보기",
+                        link: {
+                          mobileWebUrl:
+                            "https://parkjongbok1.github.io/jj_wedding/",
+                          webUrl: "https://parkjongbok1.github.io/jj_wedding/",
+                        },
+                      },
+                    ],
+                  });
+                });
+
+                // 링크 복사
+                $(".copy-link").click(function () {
+                  navigator.clipboard.writeText(
+                    "https://parkjongbok1.github.io/jj_wedding/",
+                  );
+
+                  alert("링크가 복사되었습니다.");
+                });
+              </script>
             </div>
           </section>
         </main>
