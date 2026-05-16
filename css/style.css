@@ -1343,6 +1343,7 @@ section,
   .visual {
     height: calc(100vh - 52px);
     /* height: 212vw; */
+    background: url("../img/visual_bg.png") no-repeat center top;
   }
   .visual .title {
     margin: 14% 0 0;
