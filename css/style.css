@@ -1341,8 +1341,8 @@ section,
 
   /* visual */
   .visual {
-    /* height: calc(100vh - 52px); */
-    height: 212vw;
+    height: calc(100vh - 52px);
+    /* height: 212vw; */
   }
   .visual .title {
     margin: 14% 0 0;
