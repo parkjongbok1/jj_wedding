@@ -28,7 +28,7 @@
     <meta property="og:title" content="박종복 ♥ 신지수 결혼합니다!" />
     <meta
       property="og:description"
-      content="2026년 6월 27일 토요일 오후 12시 10분 - 더뉴컨벤션"
+      content="26.6.27 토요일 12시 10분 / 더뉴컨벤션"
     />
 
     <!-- ❗ 레포명 수정 필수 -->
@@ -88,81 +88,219 @@
   <body>
     <!-- 본 모바일 청첩장 레이아웃 -->
     <div class="guideline">
+      <div class="poppop">
+        <div class="pop_item">
+          <div class="bgm"><img src="img/off.png" alt="" /></div>
+
+          <audio id="bgmAudio" loop>
+            <source src="music/music.mp3" type="audio/mpeg" />
+          </audio>
+
+          <span class="line"></span>
+
+          <!-- 위치 버튼 -->
+          <div class="makr">
+            <img src="img/makr.png" alt="" />
+          </div>
+
+          <span class="line"></span>
+
+          <div class="share">
+            <img src="img/share.png" alt="" />
+          </div>
+        </div>
+
+        <!-- 공유 팝업 -->
+        <div class="share_popup">
+          <div class="share_inner">
+            <!-- 닫기 -->
+            <button class="close_btn">✕</button>
+
+            <!-- 타이틀 -->
+            <p class="share_title">공유하기</p>
+
+            <!-- 버튼들 -->
+            <div class="share_list">
+              <!-- 링크복사 -->
+              <a href="javascript:void(0);" class="copy-link">
+                <div class="icon link">
+                  <img src="img/link.png" alt="" />
+                </div>
+
+                <span>링크 복사</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 지도 팝업 -->
+        <div class="map_popup">
+          <div class="map_inner">
+            <!-- 닫기 -->
+            <button class="map_close_btn">✕</button>
+
+            <!-- 타이틀 -->
+            <p class="map_title">지도 앱 열기</p>
+
+            <!-- 버튼들 -->
+            <div class="map_list">
+              <!-- 카카오맵 -->
+              <a href="https://place.map.kakao.com/26314220" target="_blank">
+                <div class="icon kakao_map">
+                  <img src="img/kakao_map.png" alt="" />
+                </div>
+
+                <span>카카오맵</span>
+              </a>
+
+              <!-- 네이버지도 -->
+              <a href="https://naver.me/5UEc8GRX" target="_blank">
+                <div class="icon naver_map">
+                  <img src="img/naver_map.png" alt="" />
+                </div>
+
+                <span>네이버지도</span>
+              </a>
+
+              <!-- 구글맵 -->
+              <a
+                href="https://maps.app.goo.gl/9M4SnXaUmhoSD5aZ8"
+                target="_blank"
+              >
+                <div class="icon google_map">
+                  <img src="img/google_map.png" alt="" />
+                </div>
+
+                <span>구글맵</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          // 요소 선택
+          const bgmBtn = document.querySelector(".bgm");
+          const bgmAudio = document.getElementById("bgmAudio");
+
+          // 오디오 미리 로드
+          bgmAudio.preload = "auto";
+
+          // 시작 상태
+          let isPlaying = true;
+
+          // 페이지 로드 후 자동 재생
+          window.addEventListener("load", async () => {
+            try {
+              // 모바일 대응용 mute 후 재생
+              bgmAudio.muted = true;
+
+              await bgmAudio.play();
+
+              // 음소거 해제
+              bgmAudio.muted = false;
+
+              // 버튼 이미지 변경
+              bgmBtn.innerHTML = '<img src="img/on.png" alt="ON">';
+            } catch (e) {
+              // 자동재생 실패
+              isPlaying = false;
+
+              bgmBtn.classList.add("off");
+              bgmBtn.innerHTML = '<img src="img/off.png" alt="OFF">';
+            }
+          });
+
+          // BGM 버튼 클릭
+          bgmBtn.addEventListener("click", async () => {
+            if (isPlaying) {
+              bgmAudio.pause();
+
+              bgmBtn.classList.add("off");
+              bgmBtn.innerHTML = '<img src="img/off.png" alt="OFF">';
+            } else {
+              await bgmAudio.play();
+
+              bgmBtn.classList.remove("off");
+              bgmBtn.innerHTML = '<img src="img/on.png" alt="ON">';
+            }
+
+            isPlaying = !isPlaying;
+          });
+
+          // =========================
+          // 공유 팝업
+          // =========================
+
+          // 공유 버튼 클릭
+          $(".share").click(function () {
+            $(".share_popup").addClass("active");
+          });
+
+          // 공유팝업 닫기
+          $(".close_btn").click(function () {
+            $(".share_popup").removeClass("active");
+          });
+
+          // 바깥영역 클릭 시 닫기
+          $(".share_popup").click(function (e) {
+            if ($(e.target).hasClass("share_popup")) {
+              $(".share_popup").removeClass("active");
+            }
+          });
+
+          // 링크 복사
+          $(".copy-link").click(function () {
+            navigator.clipboard.writeText(
+              "https://parkjongbok1.github.io/jj_wedding/",
+            );
+
+            alert("링크가 복사되었습니다.");
+          });
+
+          // =========================
+          // 지도 팝업
+          // =========================
+
+          // 지도 버튼 클릭
+          $(".makr").click(function () {
+            $(".map_popup").addClass("active");
+          });
+
+          // 지도팝업 닫기
+          $(".map_close_btn").click(function () {
+            $(".map_popup").removeClass("active");
+          });
+
+          // 바깥영역 클릭 시 닫기
+          $(".map_popup").click(function (e) {
+            if ($(e.target).hasClass("map_popup")) {
+              $(".map_popup").removeClass("active");
+            }
+          });
+        </script>
+      </div>
+
       <div class="wrep">
         <!-- main -->
         <main class="main wrapper">
           <!-- sec01 비주얼 -->
           <section class="sec01 visual">
-            <div class="bgm"><img src="img/off.png" alt="" /></div>
-
-            <audio id="bgmAudio" loop>
-              <source src="music/music.mp3" type="audio/mpeg" />
-            </audio>
-
             <div class="title">
               <!-- <strong>2026.06.27 SAT 12:10 PM</strong> -->
               <h2>
                 We are <br />
                 getting married
               </h2>
-              <p>신랑 박종복 ♥ 신부 신지수</p>
+              <!-- <p>신랑 박종복 <span>♥</span> 신부 신지수</p> -->
             </div>
 
             <div class="title02">
-              <p>2026년 6월 27일 토요일, 오후 12시 10분</p>
-              <strong>더뉴컨벤션, 2층 더뉴홀</strong>
+              <p>
+                2026년 6월 27일 토요일, 오후 12시 10분
+                <strong>더뉴컨벤션, 2층 더뉴홀</strong>
+              </p>
             </div>
           </section>
-
-          <script>
-            // 요소 선택
-            const bgmBtn = document.querySelector(".bgm");
-            const bgmAudio = document.getElementById("bgmAudio");
-
-            // 오디오 미리 로드
-            bgmAudio.preload = "auto";
-
-            // 시작 상태
-            let isPlaying = true;
-
-            // 페이지 로드 후 즉시 로딩
-            window.addEventListener("load", async () => {
-              try {
-                // 모바일 대응용 mute 후 선재생
-                bgmAudio.muted = true;
-
-                await bgmAudio.play();
-
-                // 바로 음소거 해제
-                bgmAudio.muted = false;
-
-                // 시작 버튼 이미지
-                bgmBtn.innerHTML = '<img src="img/on.png" alt="ON">';
-              } catch (e) {
-                // 자동재생 실패 시
-                isPlaying = false;
-                bgmBtn.classList.add("off");
-                bgmBtn.innerHTML = '<img src="img/off.png" alt="OFF">';
-              }
-            });
-
-            // 클릭 이벤트
-            bgmBtn.addEventListener("click", async () => {
-              if (isPlaying) {
-                bgmAudio.pause();
-
-                bgmBtn.classList.add("off");
-                bgmBtn.innerHTML = '<img src="img/off.png" alt="OFF">';
-              } else {
-                await bgmAudio.play();
-
-                bgmBtn.classList.remove("off");
-                bgmBtn.innerHTML = '<img src="img/on.png" alt="ON">';
-              }
-
-              isPlaying = !isPlaying;
-            });
-          </script>
 
           <!-- sec02 인사말 -->
           <section class="sec02 greeting">
@@ -250,8 +388,8 @@
 
               <div class="top ani t-delay0_3">
                 <span>
-                  나의 사랑하는 자가 내게 말하여 이르기를 나의 사랑,<br />
-                  내 어여쁜 자야 일어나서 함께 가자
+                  나의 사랑하는 자가 내게 말하여 이르기를<br />
+                  나의 사랑, 내 어여쁜 자야 일어나서 함께 가자
                 </span>
                 <strong>아가서 2:10</strong>
               </div>
@@ -260,13 +398,14 @@
 
               <div class="btm">
                 <span class="ani t-delay0_5">
-                  눈부신 햇살 아래, 두 사람이 하나 되어 사랑을 약속합니다.<br />
+                  눈부신 햇살 아래,<br />
+                  두 사람이 하나 되어 사랑을 약속합니다.<br />
                   저희 두 사람이 함께하는 뜨거운 계절의 새로운 시작에<br />
                   귀한 발걸음으로 축복해 주시면 감사하겠습니다.
                 </span>
                 <h2 class="ani t-delay0_6">
                   <span style="color: rgb(135 135 231)">신랑</span> 박종복 ㆍ
-                  <span style="color: rgb(230, 123, 123); margin-left: 3px">
+                  <span style="color: rgb(230, 123, 123); margin-left: 5px">
                     신부
                   </span>
                   신지수
@@ -577,96 +716,96 @@
                   <img src="gallery01/gallery_img02.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img03 ani t-delay0_4">
-                  <img src="gallery01/gallery_img03.png" alt="" />
+                  <!-- <img src="gallery01/gallery_img03.png" alt="" /> -->
+                  <img src="gallery01/gallery_img04.png" alt="" />
                 </a>
               </div>
               <div class="desc desc02">
                 <a href="#" class="item gallery_img04 ani t-delay0_5">
-                  <img src="gallery01/gallery_img04.png" alt="" />
-                </a>
-                <a href="#" class="item gallery_img05 ani t-delay0_6">
                   <img src="gallery01/gallery_img05.png" alt="" />
                 </a>
-                <a href="#" class="item gallery_img06 ani t-delay0_7">
+                <a href="#" class="item gallery_img05 ani t-delay0_6">
                   <img src="gallery02/gallery_img06.png" alt="" />
+                </a>
+                <a href="#" class="item gallery_img06 ani t-delay0_7">
+                  <img src="gallery02/gallery_img07.png" alt="" />
                 </a>
               </div>
               <div class="desc desc03">
                 <a href="#" class="item gallery_img07 ani t-delay0_8">
-                  <img src="gallery02/gallery_img07.png" alt="" />
-                </a>
-                <a href="#" class="item gallery_img08 ani t-delay0_9">
                   <img src="gallery02/gallery_img08.png" alt="" />
                 </a>
+                <a href="#" class="item gallery_img08 ani t-delay0_9">
+                  <img src="gallery03/gallery_img13.png" alt="" />
+                </a>
                 <a href="#" class="item gallery_img09 ani t-delay1">
-                  <img src="gallery02/gallery_img09.png" alt="" />
+                  <img src="gallery03/gallery_img14.png" alt="" />
                 </a>
               </div>
               <div class="desc desc04">
                 <a href="#" class="item gallery_img10">
-                  <img src="gallery02/gallery_img10.png" alt="" />
+                  <img src="gallery02/gallery_img09.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img11">
-                  <img src="gallery03/gallery_img11.png" alt="" />
+                  <img src="gallery02/gallery_img10.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img12">
-                  <img src="gallery03/gallery_img13.png" alt="" />
+                  <img src="gallery03/gallery_img11.png" alt="" />
                 </a>
               </div>
               <div class="desc desc05">
                 <a href="#" class="item gallery_img13">
-                  <img src="gallery03/gallery_img14.png" alt="" />
+                  <img src="gallery04/gallery_img16.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img14">
-                  <img src="gallery03/gallery_img15.png" alt="" />
+                  <img src="gallery04/gallery_img17.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img15">
-                  <img src="gallery04/gallery_img16.png" alt="" />
+                  <img src="gallery04/gallery_img18.png" alt="" />
                 </a>
               </div>
               <div class="desc desc06">
                 <a href="#" class="item gallery_img16">
-                  <img src="gallery04/gallery_img17.png" alt="" />
+                  <img src="gallery04/gallery_img19.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img17">
-                  <img src="gallery04/gallery_img18.png" alt="" />
+                  <img src="gallery04/gallery_img20.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img18">
-                  <img src="gallery04/gallery_img19.png" alt="" />
+                  <img src="gallery05/gallery_img21.png" alt="" />
                 </a>
               </div>
               <div class="desc desc07">
                 <a href="#" class="item gallery_img19">
-                  <img src="gallery04/gallery_img20.png" alt="" />
+                  <img src="gallery05/gallery_img22.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img20">
-                  <img src="gallery05/gallery_img21.png" alt="" />
+                  <img src="gallery05/gallery_img23.png" alt="" />
                 </a>
                 <a href="#" class="item gallery_img21">
-                  <img src="gallery05/gallery_img22.png" alt="" />
+                  <img src="gallery05/gallery_img24.png" alt="" />
                 </a>
               </div>
               <div class="desc desc08">
                 <a href="#" class="item gallery_img22">
-                  <img src="gallery05/gallery_img23.png" alt="" />
-                </a>
-                <a href="#" class="item gallery_img23">
                   <img src="gallery05/gallery_img25.png" alt="" />
                 </a>
-                <a href="#" class="item gallery_img24">
+                <a href="#" class="item gallery_img23">
                   <img src="gallery06/gallery_img26.png" alt="" />
-                  <img src="gallery05/gallery_img24.png" alt="" />
+                </a>
+                <a href="#" class="item gallery_img24">
+                  <img src="gallery06/gallery_img27.png" alt="" />
                 </a>
               </div>
               <div class="desc desc09">
                 <a href="#" class="item gallery_img25">
-                  <img src="gallery06/gallery_img27.png" alt="" />
-                </a>
-                <a href="#" class="item gallery_img26">
                   <img src="gallery06/gallery_img28.png" alt="" />
                 </a>
-                <a href="#" class="item gallery_img27">
+                <a href="#" class="item gallery_img26">
                   <img src="gallery06/gallery_img29.png" alt="" />
+                </a>
+                <a href="#" class="item gallery_img27">
+                  <img src="gallery03/gallery_img15.png" alt="" />
                 </a>
               </div>
             </div>
@@ -942,47 +1081,36 @@
               </script>
             </div>
 
-            <div class="contact_items ani t-delay0_5">
-              <!-- 자차 -->
-              <div class="desc">
-                <div class="item item01">
-                  <div class="contact_btns">
-                    <a
-                      href="https://kko.to/PDTqTkK4Lo"
-                      class="btns"
-                      target="_blank"
-                    >
-                      <img src="img/kakao_navi.png" alt="" />
-                      <span>카카오내비</span>
-                    </a>
-                    <a
-                      href="https://tmap.life/dc025d23"
-                      class="btns"
-                      target="_blank"
-                    >
-                      <img src="img/t_map.png" alt="" />
-                      <span>티맵</span>
-                    </a>
-                    <a
-                      href="https://naver.me/5UEc8GRX"
-                      class="btns btns3"
-                      target="_blank"
-                    >
-                      <img src="img/naver_map.png" alt="" />
-                      <span>네이버지도</span>
-                    </a>
-                  </div>
+            <div class="contact_btns">
+              <a href="https://kko.to/PDTqTkK4Lo" class="btns" target="_blank">
+                <img src="img/kakao_navi.png" alt="" />
+                <span>카카오내비</span>
+              </a>
+              <a href="https://tmap.life/dc025d23" class="btns" target="_blank">
+                <img src="img/t_map.png" alt="" />
+                <span>티맵</span>
+              </a>
+              <a
+                href="https://naver.me/5UEc8GRX"
+                class="btns btns3"
+                target="_blank"
+              >
+                <img src="img/naver_map.png" alt="" />
+                <span>네이버지도</span>
+              </a>
+            </div>
 
-                  <h3><i class="fa fa-car" aria-hidden="true"></i> 자차</h3>
-                  <p>
-                    <span>
-                      내비게이션 : "더뉴컨벤션웨딩홀" 검색<br />
-                      서울 강서구 공항대로36길 57 더뉴컨벤션웨딩
-                    </span>
-                  </p>
+            <div class="contact_items ani t-delay0_5">
+              <div class="desc">
+                <!-- 지하철 01 -->
+                <div class="item item01">
+                  <h3>
+                    <i class="fa fa-subway" aria-hidden="true"></i> 지하철
+                  </h3>
+                  <p><span>5호선 발산역 7번 출구 (도보 5분)</span></p>
                 </div>
 
-                <!-- 버스 -->
+                <!-- 버스 02 -->
                 <div class="item item02">
                   <h3><i class="fa fa-bus" aria-hidden="true"></i> 버스</h3>
                   <p>
@@ -1002,12 +1130,15 @@
                   </p>
                 </div>
 
-                <!-- 지하철 -->
+                <!-- 자차 03 -->
                 <div class="item item03">
-                  <h3>
-                    <i class="fa fa-subway" aria-hidden="true"></i> 지하철
-                  </h3>
-                  <p><span>5호선 발산역 하차 7번 출구(도보 5분)</span></p>
+                  <h3><i class="fa fa-car" aria-hidden="true"></i> 자차</h3>
+                  <p>
+                    <span>
+                      내비게이션 : "더뉴컨벤션웨딩홀" 검색<br />
+                      서울 강서구 공항대로36길 57 더뉴컨벤션웨딩
+                    </span>
+                  </p>
                 </div>
 
                 <!-- 주차 -->
@@ -1154,6 +1285,34 @@
                 });
               });
             </script>
+            <script>
+              // 계좌 복사 기능
+              document.querySelectorAll(".account_copyBtn").forEach((btn) => {
+                btn.addEventListener("click", function (e) {
+                  e.preventDefault();
+
+                  // li 부모 찾기
+                  const item = this.closest(".account_item");
+
+                  // 이름 가져오기
+                  const title = item
+                    .querySelector("h4")
+                    .innerText.replace(/\s+/g, " ")
+                    .trim();
+
+                  // 계좌번호 영역 가져오기
+                  const copyText = item
+                    .querySelector(".copy")
+                    .childNodes[0].textContent.trim();
+
+                  // 계좌번호 복사
+                  navigator.clipboard.writeText(copyText);
+
+                  // 알림
+                  alert(`${title} 계좌가 복사 되었습니다.`);
+                });
+              });
+            </script>
           </section>
 
           <!-- footer -->
@@ -1168,77 +1327,12 @@
 
               <h3>박종복 <span>♥</span> 신지수</h3>
             </div>
-
-            <div class="link_box">
-              <!-- 카카오 SDK -->
-              <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-              <!-- 버튼 -->
-              <a href="javascript:void(0);" class="kakao-share">
-                <img src="img/kakao.png" alt="" />
-                카카오톡 공유하기
-              </a>
-
-              <a href="javascript:void(0);" class="copy-link">
-                <img src="img/link.png" alt="" />
-                링크 복사하기
-              </a>
-
-              <!-- 카카오 SDK -->
-              <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-              <script>
-                // 카카오 초기화
-                Kakao.init("여기에_자바스크립트키");
-
-                // 카카오 공유
-                $(".kakao-share").click(function () {
-                  Kakao.Share.sendDefault({
-                    objectType: "feed",
-
-                    content: {
-                      title: "박종복 ♥ 신지수 결혼합니다!",
-                      description:
-                        "2026년 6월 27일 토요일 오후 12시 10분 - 더뉴컨벤션",
-                      imageUrl:
-                        "https://parkjongbok1.github.io/jj_wedding/meta/thumb.jpg",
-
-                      link: {
-                        mobileWebUrl:
-                          "https://parkjongbok1.github.io/jj_wedding/",
-                        webUrl: "https://parkjongbok1.github.io/jj_wedding/",
-                      },
-                    },
-
-                    buttons: [
-                      {
-                        title: "청첩장 보기",
-                        link: {
-                          mobileWebUrl:
-                            "https://parkjongbok1.github.io/jj_wedding/",
-                          webUrl: "https://parkjongbok1.github.io/jj_wedding/",
-                        },
-                      },
-                    ],
-                  });
-                });
-
-                // 링크 복사
-                $(".copy-link").click(function () {
-                  navigator.clipboard.writeText(
-                    "https://parkjongbok1.github.io/jj_wedding/",
-                  );
-
-                  alert("링크가 복사되었습니다.");
-                });
-              </script>
-            </div>
           </section>
         </main>
       </div>
     </div>
 
-    <script>
+    <!-- <script>
       (function () {
         "use strict";
 
@@ -1362,6 +1456,6 @@
           e.preventDefault();
         });
       })();
-    </script>
+    </script> -->
   </body>
 </html>
